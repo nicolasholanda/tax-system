@@ -1,0 +1,5 @@
+CREATE TABLE states (
+    id BIGSERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    abbreviation VARCHAR(2) NOT NULL UNIQUE
+);
