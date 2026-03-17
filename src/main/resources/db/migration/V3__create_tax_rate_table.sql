@@ -2,7 +2,7 @@ CREATE TABLE tax_rates (
     id BIGSERIAL PRIMARY KEY,
     product_id BIGINT NOT NULL REFERENCES products(id),
     state_id BIGINT NOT NULL REFERENCES states(id),
-    year INTEGER NOT NULL,
+    tax_year INTEGER NOT NULL,
     rate NUMERIC(5, 2) NOT NULL,
-    UNIQUE (product_id, state_id, year)
+    UNIQUE (product_id, state_id, tax_year)
 );

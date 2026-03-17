@@ -1,5 +1,6 @@
 package com.taxsystem.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,7 +14,7 @@ import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "tax_rates", uniqueConstraints = @UniqueConstraint(columnNames = {"product_id", "state_id", "year"}))
+@Table(name = "tax_rates", uniqueConstraints = @UniqueConstraint(columnNames = {"product_id", "state_id", "tax_year"}))
 public class TaxRate {
 
     @Id
@@ -31,6 +32,7 @@ public class TaxRate {
     private State state;
 
     @NotNull
+    @Column(name = "tax_year")
     private Integer year;
 
     @NotNull
