@@ -1,6 +1,7 @@
 package com.taxsystem.service;
 
 import com.taxsystem.entity.TaxRate;
+import com.taxsystem.exception.ResourceNotFoundException;
 import com.taxsystem.repository.TaxRateRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class TaxRateService {
 
     public TaxRate findById(Long id) {
         return taxRateRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("TaxRate not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("TaxRate not found with id: " + id));
     }
 
     public TaxRate create(TaxRate taxRate) {

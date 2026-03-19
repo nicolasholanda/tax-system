@@ -1,6 +1,7 @@
 package com.taxsystem.service;
 
 import com.taxsystem.entity.Product;
+import com.taxsystem.exception.ResourceNotFoundException;
 import com.taxsystem.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class ProductService {
 
     public Product findById(Long id) {
         return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
     }
 
     public Product create(Product product) {

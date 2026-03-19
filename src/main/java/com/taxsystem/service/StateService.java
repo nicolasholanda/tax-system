@@ -1,6 +1,7 @@
 package com.taxsystem.service;
 
 import com.taxsystem.entity.State;
+import com.taxsystem.exception.ResourceNotFoundException;
 import com.taxsystem.repository.StateRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class StateService {
 
     public State findById(Long id) {
         return stateRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("State not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("State not found with id: " + id));
     }
 
     public State create(State state) {

@@ -3,6 +3,7 @@ package com.taxsystem.service;
 import com.taxsystem.dto.TaxCalculationRequest;
 import com.taxsystem.dto.TaxCalculationResponse;
 import com.taxsystem.entity.TaxRate;
+import com.taxsystem.exception.ResourceNotFoundException;
 import com.taxsystem.repository.TaxRateRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class TaxCalculationService {
     public TaxCalculationResponse calculate(TaxCalculationRequest request) {
         TaxRate taxRate = taxRateRepository
                 .findByProductIdAndStateIdAndYear(request.getProductId(), request.getStateId(), request.getYear())
-                .orElseThrow(() -> new RuntimeException("TaxRate not found for the given product, state, and year"));
+                .orElseThrow(() -> new ResourceNotFoundException("TaxRate not found for the given product, state, and year"));
 
         BigDecimal taxAmount = request.getAmount()
                 .multiply(taxRate.getRate())
